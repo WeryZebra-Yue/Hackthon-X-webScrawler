@@ -1,0 +1,325 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/* header */
+.Header{
+    display: flex;
+    width: 100%;
+    height: 86px;
+
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    
+   
+}
+.InnerHeader{
+    display: flex;
+    width: 90%;
+    height: 100%;
+    
+    align-items: center; 
+    justify-content:  space-between;
+    /* justify-self: center; */
+}
+.anims{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    justify-content: center;
+    border-bottom: 1px solid rgb(119, 118, 118);
+    
+ 
+}
+.logo{
+    height: 45px;
+}
+.navi{
+    display: flex;
+    list-style: none;
+}
+.navi a{
+    display: flex;
+    color: black;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-left: 3rem;
+    cursor: pointer;
+    color: rgb(99, 99, 99);
+   
+    /* text-align: center; */
+    align-items: center;
+ 
+}
+.reg{
+    height: 86px;
+    width: 100px;
+    /* text-align: center; */
+    opacity: 10;
+    justify-content: center;
+
+  
+
+}
+
+.ham{
+    /* display: flex; */
+    flex-direction: column;
+    display: none;
+}
+.ham span{
+    display: block;
+    width: 21px;
+    height: 4px;
+    border-radius: 2px;
+    margin-bottom: 4px;
+    background-color: blue;
+
+}
+/* Ham Media Query */
+@media only screen and (max-width: 320px){
+    #sec{
+        display: none;
+    }
+    #secX{
+        display: none;
+    }
+}
+@media only screen and (max-width: 499px){
+   .News{
+       font-size: x-large!important;
+       padding: 5px!important;
+   }
+   .searchInput{
+    
+       font-size: 15px!important;
+       padding: 2px!important;
+    
+   }
+   svg{
+       width: 30;
+   }
+   .Search{
+       padding: 5px!important;
+   }
+}
+.post{
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    border-radius: 10px;
+    /* border :1px solid blue; */
+    box-shadow: 1px 1px 3px 3px rgb(0, 0, 0,0.5);
+    min-width: 200px;
+    margin: 30px;
+    height: min-content;
+    padding: 10px;
+    transition:0.5s all;
+    cursor: pointer;
+    /* background-color: white; */
+    
+
+}
+.spand{
+    font-family: 'Urbanist', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding: 5px;
+    
+}
+.desc{
+    font-family: 'Muli', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 500;
+    padding: 5px;
+
+}
+.post:hover{
+    transform: scale(1.07);
+    transition:0.6s all;
+
+}
+.postImage{
+    min-width: 200px;
+    width: auto;
+    padding: 10px;
+
+
+    
+    
+    max-height: 300px;
+}
+@media only screen and (max-width: 435px){
+ #timer{
+     padding:10px !important;
+ }
+    #timer div{
+        padding: 10px!important;
+    }
+    #timer div p{
+        font-size: 13px!important;
+       
+    }
+}
+@media only screen and (max-height: 660px) {
+    .arrow img{
+        width: 19px!important;
+        /* padding: 8px!important; */
+
+    }
+    .arrow{
+        width: 38px!important   ;
+        height: 28px!important  ;
+    }
+}
+@media only screen and (max-width: 1093px) {
+    .navi{
+        display: none;
+      
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        top: -320px;
+        right: 0;
+        z-index: -1;
+    
+     
+
+     
+        
+    }
+    
+    .NaviActive{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        top: -320px;
+        background-color: white;
+        right: 0;
+        z-index: -1;
+   
+        animation: animeHam 0.5s forwards;
+    }
+    @keyframes animeHam{
+        100%{
+            top: 80px;
+        }
+        
+    }
+    .NaviActiveDown{
+
+        animation: animeHam2 0.5s forwards;
+        
+    }
+    @keyframes animeHam2{
+       0%{
+         top: 70px;
+       }
+        100%{
+            top: -320px;
+            
+        }
+        
+    }
+    .navi a{
+        padding-bottom: 30px;
+        padding-right: 0px;
+        padding-left: 0px;
+        margin:0px;
+        padding-top: 30px;
+        justify-content: center ;
+        right: 0;
+        left: 0;
+    
+        font-size: 13px;
+        height: 100%;
+        /* border-bottom: 1px blue solid; */
+      
+    }
+    .temp{
+        padding-top: 50px!important;
+    }
+    .reg{
+        width: 100%;
+        right: 0;
+        margin-bottom: 0px!important;
+        margin-right: 0px!important;
+        margin-left: 0px!important;
+        margin-top: 0px!important;
+    }
+    .navi a:hover{
+        
+        
+      
+     
+         
+     }  
+    .ham{
+        display: block;
+        cursor: pointer;
+    }
+  }
+  .navi a:hover{
+        
+      
+         
+}  
+
+.navi a {
+    
+    margin:10px;
+    padding:10px 10px;
+    float:left;
+    box-sizing:border-box;
+    
+    position:relative;
+    cursor:pointer; 
+  }
+  .navi a:before {
+    position:absolute;
+    bottom:0;
+    background:blue;
+    height:1.5px;
+    display:block;
+    content:"";  
+    width:0;
+    transition:0.2s all ease-in;  
+  }
+  .navi a:hover:before {
+    width:100%;
+  }
+  .bfromLeft:before {
+    bottom:0;
+    left:0;
+  }
+  .navi a:hover{
+    color:blue;
+  }
+  .searchInput{
+      outline: none;
+      border:none;  
+      background-color: rgba(243,244,246,1.5);
+      color: black;
+      font-size: 20px;
+      padding: 5px;
+      font-family: 'Urbanist', sans-serif;
+      min-width: 20px;
+      width: 100%;
+
+  }
+  .Search{
+          background-color: rgba(243,244,246,1.5);
+          padding: 10px;
+   
+          display: flex;
+          align-items: center;
+          border-radius: 50px;
+          margin: 20px;
+          
+
+  }
