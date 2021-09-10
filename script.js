@@ -1,22 +1,4 @@
-let req = new XMLHttpRequest();
-req.open("GET","https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=71a7a69bc8a74c3181be2e06814ee95a")
-req.send();
-req.onload = () =>{
-    // console.log(req)
-    if(req.status == 200){
-       let response = JSON.parse(req.response);
-         console.log(Math.ceil(response.totalResults/20))
-         Query('.hello').style.minHeight = "none!important"
-       for (const [key, value] of Object.entries(response.articles)) {
-        Converting(value)
-      }
-      
-    }
-    else{
-        // console.log(req)
-    }
- 
-}
+
 const Query = (Q) =>{
     return document.querySelector(Q)
 }
@@ -42,7 +24,7 @@ const Converting = (value) =>{
     let urltoImage;
     let content;
     let href;
-    console.log(value)
+    // console.log(value)
     for (const [keys, values] of Object.entries(value)) {
             
         if(keys ==='title'){
@@ -80,3 +62,78 @@ const Converting = (value) =>{
     }
 
 }
+Query('#Search-Form').addEventListener('submit',(e)=>{
+    e.preventDefault();  
+    window.location.replace(`?q=${Query('#searchInput').value}&language=${Query('#lang').value}`)
+    // console.log ();
+});
+let url = new URL(location.href);
+;
+let q = url.searchParams.get('q')
+// console.log(q)
+    let country = url.searchParams.get('country');
+    let category = url.searchParams.get('category');
+    // let sort = url.searchParams.get('category');
+    let lang = url.searchParams.get('language');
+
+try{
+
+   q = q.replace(' ','-');
+}
+    
+catch{
+
+}
+let date = new Date();
+let newsLink ;
+if(q){
+
+    newsLink =  `https://newsapi.org/v2/everything?q=${q}&apiKey=a312218f78f842479f2be8595ae23e37&language=${lang?lang:'en'}`
+}
+else{
+    newsLink =  `https://newsapi.org/v2/top-headlines?country=us&apiKey=a312218f78f842479f2be8595ae23e37&language=${lang?lang:'en'}`
+    
+}
+const NewsCall = (newsLink)=>{
+    
+    let req = new XMLHttpRequest();
+    req.open("GET",newsLink)
+    req.send();
+    req.onload = () =>{
+        // console.log(req)
+        if(req.status == 200){
+            let response = JSON.parse(req.response);
+            // console.log(Math.ceil(response.totalResults/20))
+            Query('.hello').style.minHeight = "none!important"
+            for (const [key, value] of Object.entries(response.articles)) {
+                Converting(value)
+            }
+            
+        }
+        // console.log(req)
+        else{
+        }
+        
+    }
+}
+console.log(newsLink)
+NewsCall(newsLink)
+//Changes from Queries
+Query('#lang').value= lang?lang:'en'
+let goBtn = Query('.go');
+const Go = ()=>{
+    // let newUrl = new URL(newsLink);
+    // newUrl.searchParams.set('language',);
+    goBtn.id = Query('#lang').value;
+    goBtn.style.background = "blue"
+}
+goBtn.addEventListener('click',()=>{
+    if(goBtn.id){
+        
+
+            location.replace(`?language=${goBtn.id}&q=${q?q:'Latest'}`)
+      
+    }
+})
+
+
