@@ -3,7 +3,7 @@ const Query = (Q) =>{
     return document.querySelector(Q)
 }
 let ham = Query('.ham');
-let Navi = Query('.navi');
+let Navi = Query('.navigation-selectors-wrapper');
 ham.addEventListener("click",()=>{
     if(!Navi.classList.contains('NaviActive')){
         Navi.classList.toggle('NaviActive')
@@ -62,9 +62,10 @@ const Converting = (value) =>{
     }
 
 }
-Query('#Search-Form').addEventListener('submit',(e)=>{
+Query('#search-form').addEventListener('submit',(e)=>{
     e.preventDefault();  
-    window.location.replace(`?q=${Query('#searchInput').value}&language=${Query('#lang').value}`)
+    console.log("S")
+    window.location.replace(`?q=${Query('#search-input').value}&language=${Query('#lang').value}`)
     // console.log ();
 });
 let url = new URL(location.href);
@@ -104,7 +105,6 @@ const NewsCall = (newsLink)=>{
         if(req.status == 200){
             let response = JSON.parse(req.response);
             // console.log(Math.ceil(response.totalResults/20))
-            Query('.hello').style.minHeight = "none!important"
             for (const [key, value] of Object.entries(response.articles)) {
                 Converting(value)
             }
