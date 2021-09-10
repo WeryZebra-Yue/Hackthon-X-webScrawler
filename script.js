@@ -54,6 +54,7 @@ const Converting = (value) =>{
         titles.classList.add('spand')
         desc.classList.add('desc')
         img.classList.add('postImage')
+        img.setAttribute('lazyload','true')
         a.classList.add('post')
         a.href = href;
         
@@ -76,6 +77,9 @@ let q = url.searchParams.get('q')
     let category = url.searchParams.get('category');
     // let sort = url.searchParams.get('category');
     let lang = url.searchParams.get('language');
+    let p = parseInt(url.searchParams.get('p'));
+    
+    p = p?p:1
 
 try{
 
@@ -85,14 +89,22 @@ try{
 catch{
 
 }
+
+// Page Logic
+let TotalPages;
 let date = new Date();
 let newsLink ;
+if(p==1){
+    Query('.previous').style.opacity = 0.5
+}
+
+Query('.PageNumber').innerHTML = p
 if(q){
 
-    newsLink =  `https://newsapi.org/v2/everything?q=${q}&apiKey=a312218f78f842479f2be8595ae23e37&language=${lang?lang:'en'}`
+    newsLink =  `https://newsapi.org/v2/everything?q=${q}&apiKey=f8f444fcb36243659b68f63007d6f67f&language=${lang?lang:'en'}&page=${p?p:1}`
 }
 else{
-    newsLink =  `https://newsapi.org/v2/top-headlines?country=us&apiKey=a312218f78f842479f2be8595ae23e37&language=${lang?lang:'en'}`
+    newsLink =  `https://newsapi.org/v2/top-headlines?country=us&apiKey=f8f444fcb36243659b68f63007d6f67f&language=${lang?lang:'en'}&page=${p?p:1}`
     
 }
 const NewsCall = (newsLink)=>{
@@ -104,7 +116,13 @@ const NewsCall = (newsLink)=>{
         // console.log(req)
         if(req.status == 200){
             let response = JSON.parse(req.response);
-            // console.log(Math.ceil(response.totalResults/20))
+            // console.log(Math.ceil())
+            TotalPages =  Math.ceil(response.totalResults/20)>5?5:Math.ceil(response.totalResults/20);
+            
+if(p==TotalPages && TotalPages){
+    console.log(TotalPages)
+    Query('.next').style.opacity = 0.5
+}   
             for (const [key, value] of Object.entries(response.articles)) {
                 Converting(value)
             }
@@ -116,8 +134,10 @@ const NewsCall = (newsLink)=>{
         
     }
 }
+
 console.log(newsLink)
 NewsCall(newsLink)
+
 //Changes from Queries
 Query('#lang').value= lang?lang:'en'
 let goBtn = Query('.go');
@@ -129,11 +149,36 @@ const Go = ()=>{
 }
 goBtn.addEventListener('click',()=>{
     if(goBtn.id){
-        
-
-            location.replace(`?language=${goBtn.id}&q=${q?q:'Latest'}`)
+        location.replace(`?language=${goBtn.id}&q=${q?q:'Latest'}`)
       
     }
+});
+Query('.next').addEventListener('click',()=>{
+
+    let newURL = new URL(location.href);
+    console.log(p,TotalPages)
+    
+    if(p<TotalPages){
+        p = (p+1)
+        newURL.searchParams.set('p',p);
+        location.replace(newURL)
+    }
+
+
 })
 
 
+
+Query('.previous').addEventListener('click',()=>{
+
+    let newURL = new URL(location.href);
+    console.log(p,TotalPages)
+    
+    if(p>1){
+        p = (p-1)
+        newURL.searchParams.set('p',p);
+        location.replace(newURL)
+    }
+
+
+})

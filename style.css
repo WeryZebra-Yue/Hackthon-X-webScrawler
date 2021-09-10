@@ -392,3 +392,42 @@ a {
     margin: 20px;
     height: 21px;
 }
+.next ,.previous{
+    cursor: pointer;
+    font-family: 'urbanist',sans-serif;
+    padding: 15px;
+    margin: 20px;
+    font-weight: 600;
+    color: black;
+    display: flex;
+    align-items: center;
+
+ 
+    transition: 0.5s transform;
+    
+}
+.PageNumber{
+    /* cursor: pointer; */
+    font-family: 'urbanist',sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    display: flex;
+    align-items: center;
+    transition: 0.5s transform;
+}
+.next:hover ,.previous:hover {
+    transform: scale(1.05);
+    transition: 0.5s transform;
+}
+.next img ,.previous img {
+
+   padding: 20px;
+}
+.next{
+    float: right;
+    
+}
+.previous{
+    float: left;
+}
