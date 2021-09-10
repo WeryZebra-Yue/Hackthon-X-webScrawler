@@ -39,6 +39,7 @@
 .navi{
     display: flex;
     list-style: none;
+    align-items: center;
 }
 .navi a{
     display: flex;
@@ -93,6 +94,16 @@
        font-size: x-large!important;
        padding: 5px!important;
    }
+   .hello{
+       width: 100%!important;
+
+   }
+   .spand{
+       font-size: 13px;
+   }
+   .desc{
+       font-size: 13px;
+   }
    .searchInput{
     
        font-size: 15px!important;
@@ -106,10 +117,12 @@
        padding: 5px!important;
    }
 }
+
 .post{
     display: flex;
     flex-direction: column;
     width: min-content;
+    text-decoration: none;
     border-radius: 10px;
     /* border :1px solid blue; */
     box-shadow: 1px 1px 3px 3px rgb(0, 0, 0,0.5);
@@ -128,13 +141,19 @@
     letter-spacing: 1px;
     font-weight: 700;
     padding: 5px;
+    text-decoration: none;
     
+}
+a{
+    text-decoration: none;
+    color: black;
 }
 .desc{
     font-family: 'Muli', sans-serif;
     letter-spacing: 1px;
     font-weight: 500;
     padding: 5px;
+  
 
 }
 .post:hover{
