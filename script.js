@@ -68,6 +68,9 @@ goBtn.addEventListener("click", () => {
     );
   }
 });
+
+
+
 Query(".next").addEventListener("click", () => {
   let newURL = new URL(location.href);
   console.log(currentPageParamsIndex, TotalPages);
